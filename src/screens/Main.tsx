@@ -8,8 +8,9 @@ import { CompositeScreenProps } from '@react-navigation/native';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { HomeDrawerParamList, RootStackParamList } from '@/Navs';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useCallback } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import useStickyHeader from '@/hooks/useStickyHeader';
+import MoveNoteSheet from '@/components/MoveNoteSheet';
 
 type Props = CompositeScreenProps<
   DrawerScreenProps<HomeDrawerParamList, 'Main'>,
@@ -24,6 +25,8 @@ const styles = StyleSheet.create({
 });
 
 const MainScreen: React.FC<Props> = ({ navigation }) => {
+  const refMoveNoteSheet = useRef<MoveNoteSheet>(null);
+
   const {
     handleNoteListLayout,
     handleScroll,
@@ -31,13 +34,43 @@ const MainScreen: React.FC<Props> = ({ navigation }) => {
     headerBarHeight
   } = useStickyHeader();
 
+  const [concealNoteListItem, setConcealNoteListItem] = useState<(() => void) | null>(null)
+
   const handleSidebarToggle = useCallback(() => {
     navigation.toggleDrawer();
   }, [navigation]);
 
+  const handleNoteListItemPress = useCallback((_noteId: string) => {
+    /** [TODO:wating...] */
+  }, []);
+
+  const handleNoteListItemSwipeLeft = useCallback(
+    (_noteId: string, conceal: () => void) => {
+      const { current: menu } = refMoveNoteSheet;
+
+      if (menu) {
+        menu.show()
+        setConcealNoteListItem(() => conceal)
+      };
+    },
+    []
+  );
+
+  const handleMoveNoteSheetClose = useCallback(() => {
+    if (concealNoteListItem) {
+      concealNoteListItem()
+      setConcealNoteListItem(null)
+    }
+  }, [concealNoteListItem])
+
   return (
     <Container style={styles.container}>
-      <NoteList contentInsetTop={headerBarHeight} onScroll={handleScroll} />
+      <NoteList
+        contentInsetTop={headerBarHeight}
+        onScroll={handleScroll}
+        onItemPress={handleNoteListItemPress}
+        onItemSwipeLeft={handleNoteListItemSwipeLeft}
+      />
       <HeaderBar style={headerBarStyle} onLayout={handleNoteListLayout}>
         <TouchableOpacity m="xs" p="xs" onPress={handleSidebarToggle}>
           <FeatherIcon name="menu" size={22} />
@@ -49,6 +82,7 @@ const MainScreen: React.FC<Props> = ({ navigation }) => {
           <FeatherIcon name="more-vertical" size={22} />
         </TouchableOpacity>
       </HeaderBar>
+      <MoveNoteSheet ref={refMoveNoteSheet} onClose={handleMoveNoteSheetClose} />
     </Container>
   );
 };
