@@ -8,7 +8,7 @@ const StatusBar: React.FC = () => {
   return (
     <NativeStatusBar
       animated={true}
-      backgroundColor={theme.colors.$windowBackground || 'white'} 
+      backgroundColor={theme.colors.$windowBackground || 'white'}
       barStyle={theme.statusBar?.barStyle}
     />
   );

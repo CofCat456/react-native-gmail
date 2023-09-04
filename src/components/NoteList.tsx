@@ -15,16 +15,32 @@ import { Box } from '@/atoms';
 interface Props {
   contentInsetTop: number;
   onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  onItemPress: (noteId: string) => void;
+  onItemPressLeft: (noteId: string, cancel: () => void) => void;
 }
 
 const StyledFlatList = createBox<Theme, AnimateProps<FlatListProps<Note>>>(
   Animated.FlatList
 );
 
-const NoteList: React.FC<Props> = ({ onScroll, contentInsetTop }) => {
-  const renderItem = useCallback(({ item }: { item: Note }) => {
-    return <NoteListItem {...item} />;
-  }, []);
+const NoteList: React.FC<Props> = ({
+  onScroll,
+  onItemPress,
+  onItemPressLeft,
+  contentInsetTop,
+}) => {
+  const renderItem = useCallback(
+    ({ item }: { item: Note }) => {
+      return (
+        <NoteListItem
+          {...item}
+          onPress={onItemPress}
+          onSwipeLeft={onItemPressLeft}
+        />
+      );
+    },
+    [onItemPress, onItemPressLeft]
+  );
 
   return (
     <StyledFlatList
