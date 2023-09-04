@@ -1,9 +1,9 @@
-import { Bar } from "@/atoms";
-import AnimatedBox, { AnimatedBoxProps } from "@/atoms/AnimatedBox";
+import { Bar } from '@/atoms';
+import AnimatedBox, { AnimatedBoxProps } from '@/atoms/AnimatedBox';
 
 const HeaderBar: React.FC<AnimatedBoxProps> = ({ children, ...rest }) => {
   return (
-    <AnimatedBox position="absolute" top={40} left={0} right={0} {...rest}>
+    <AnimatedBox position="absolute" top={0} left={0} right={0} {...rest}>
       <Bar
         variant="headerBar"
         flexDirection="row"
