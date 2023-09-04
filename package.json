@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@tsconfig/react-native": "^3.0.2",
     "@types/react": "~18.2.14",
     "@types/react-native-vector-icons": "^6.4.14",
     "@types/shortid": "^0.0.29",
