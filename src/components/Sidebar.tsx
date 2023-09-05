@@ -3,6 +3,7 @@ import { DrawerContentComponentProps } from '@react-navigation/drawer';
 import { useCallback } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import BookList from './BookList';
+import GmailLogo from './GmailLogo';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,15 +13,27 @@ const styles = StyleSheet.create({
 
 const Sidebar: React.FC<DrawerContentComponentProps> = ({ navigation }) => {
   const handleBookListItemPress = useCallback(() => {
-    navigation.closeDrawer()
-  }, [navigation])
+    navigation.closeDrawer();
+  }, [navigation]);
 
   return (
     <Box bg="$sidebarBackground" style={styles.container}>
       <SafeAreaView>
-        <Text variant="sidebar" m="lg">
-          Im Yu
-        </Text>
+        <Box
+          flexDirection="row"
+          alignItems="center"
+          gap="sm"
+          mt="xs"
+          pl="md"
+          pb="sm"
+          borderBottomColor="$sidebarSeparator"
+          borderBottomWidth={1}
+        >
+          <GmailLogo width={30} height="100%" color="$sidebarForeground" />
+          <Text variant="sidebar" fontSize={20} fontWeight="500">
+            Gmail
+          </Text>
+        </Box>
       </SafeAreaView>
       <BookList onPressItem={handleBookListItemPress} />
     </Box>
