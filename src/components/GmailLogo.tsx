@@ -1,4 +1,4 @@
-import LogoSVG from '@/images/gamil-logo.svg';
+import LogoSVG from '@/images/gmail-logo.svg';
 import { Theme } from '@/themes';
 import { ColorProps, useResponsiveProp, useTheme } from '@shopify/restyle';
 import { SvgProps } from 'react-native-svg';

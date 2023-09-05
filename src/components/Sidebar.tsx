@@ -29,7 +29,7 @@ const Sidebar: React.FC<DrawerContentComponentProps> = ({ navigation }) => {
           borderBottomColor="$sidebarSeparator"
           borderBottomWidth={1}
         >
-          <GmailLogo width={30} height="100%" color="$sidebarForeground" />
+          <GmailLogo width={28} height="100%" color="$sidebarForeground" />
           <Text variant="sidebar" fontSize={20} fontWeight="500">
             Gmail
           </Text>

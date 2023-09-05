@@ -2,13 +2,16 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import Navigations from './src/Navs';
 import { ThemeProvider } from '@shopify/restyle';
-import light from '@/themes/light';
 import StatusBar from '@/components/StatusBar';
+import { useAtom } from 'jotai';
+import { activeThemeAtom } from '@/states/theme';
 
 const App = () => {
+  const [activeTheme] = useAtom(activeThemeAtom)
+
   return (
     <NavigationContainer>
-      <ThemeProvider theme={light}>
+      <ThemeProvider theme={activeTheme}>
         <StatusBar />
         <Navigations />
       </ThemeProvider>
