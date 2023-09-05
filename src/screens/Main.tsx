@@ -42,8 +42,10 @@ const MainScreen: React.FC<Props> = ({ navigation }) => {
     navigation.toggleDrawer();
   }, [navigation]);
 
-  const handleNoteListItemPress = useCallback((_noteId: string) => {
-    /** [TODO:wating...] */
+  const handleNoteListItemPress = useCallback((noteId: string) => {
+    navigation.navigate('Detail', {
+      noteId
+    });
   }, []);
 
   const handleNoteListItemSwipeLeft = useCallback(
