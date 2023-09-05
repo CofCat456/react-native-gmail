@@ -1,6 +1,6 @@
-import { createTheme } from '@shopify/restyle'
-import { StatusBarStyle } from 'react-native'
-import light, { Theme } from './light'
+import { createTheme } from '@shopify/restyle';
+import { StatusBarStyle } from 'react-native';
+import light, { Theme } from './light';
 
 // Palette
 const p = {
@@ -12,7 +12,7 @@ const p = {
   slate100: '#767577',
   slate900: '#dddddd',
   blue70: '#2185d0'
-}
+};
 
 export const theme: Theme = createTheme({
   ...light,
@@ -49,6 +49,6 @@ export const theme: Theme = createTheme({
       shadowRadius: 8
     }
   }
-})
+});
 
-export default theme
+export default theme;

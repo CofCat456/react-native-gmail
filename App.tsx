@@ -7,7 +7,7 @@ import { useAtom } from 'jotai';
 import { activeThemeAtom } from '@/states/theme';
 
 const App = () => {
-  const [activeTheme] = useAtom(activeThemeAtom)
+  const [activeTheme] = useAtom(activeThemeAtom);
 
   return (
     <NavigationContainer>
