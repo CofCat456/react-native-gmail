@@ -1,6 +1,8 @@
 import { Box, Text } from '@/atoms';
 import { DrawerContentComponentProps } from '@react-navigation/drawer';
+import { useCallback } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
+import BookList from './BookList';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,7 +10,11 @@ const styles = StyleSheet.create({
   }
 });
 
-const Sidebar: React.FC<DrawerContentComponentProps> = () => {
+const Sidebar: React.FC<DrawerContentComponentProps> = ({ navigation }) => {
+  const handleBookListItemPress = useCallback(() => {
+    navigation.closeDrawer()
+  }, [navigation])
+
   return (
     <Box bg="$sidebarBackground" style={styles.container}>
       <SafeAreaView>
@@ -16,6 +22,7 @@ const Sidebar: React.FC<DrawerContentComponentProps> = () => {
           Im Yu
         </Text>
       </SafeAreaView>
+      <BookList onPressItem={handleBookListItemPress} />
     </Box>
   );
 };

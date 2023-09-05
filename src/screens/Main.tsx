@@ -34,7 +34,9 @@ const MainScreen: React.FC<Props> = ({ navigation }) => {
     headerBarHeight
   } = useStickyHeader();
 
-  const [concealNoteListItem, setConcealNoteListItem] = useState<(() => void) | null>(null)
+  const [concealNoteListItem, setConcealNoteListItem] = useState<
+    (() => void) | null
+  >(null);
 
   const handleSidebarToggle = useCallback(() => {
     navigation.toggleDrawer();
@@ -49,19 +51,19 @@ const MainScreen: React.FC<Props> = ({ navigation }) => {
       const { current: menu } = refMoveNoteSheet;
 
       if (menu) {
-        menu.show()
-        setConcealNoteListItem(() => conceal)
-      };
+        menu.show();
+        setConcealNoteListItem(() => conceal);
+      }
     },
     []
   );
 
   const handleMoveNoteSheetClose = useCallback(() => {
     if (concealNoteListItem) {
-      concealNoteListItem()
-      setConcealNoteListItem(null)
+      concealNoteListItem();
+      setConcealNoteListItem(null);
     }
-  }, [concealNoteListItem])
+  }, [concealNoteListItem]);
 
   return (
     <Container style={styles.container}>
@@ -82,7 +84,10 @@ const MainScreen: React.FC<Props> = ({ navigation }) => {
           <FeatherIcon name="more-vertical" size={22} />
         </TouchableOpacity>
       </HeaderBar>
-      <MoveNoteSheet ref={refMoveNoteSheet} onClose={handleMoveNoteSheetClose} />
+      <MoveNoteSheet
+        ref={refMoveNoteSheet}
+        onClose={handleMoveNoteSheetClose}
+      />
     </Container>
   );
 };
